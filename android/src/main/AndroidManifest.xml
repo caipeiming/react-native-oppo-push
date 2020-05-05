@@ -1,6 +1,30 @@
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="top.cpming.rn.push.oppo">
+    package="top.cpming.rn.push.oppo">
 
+    <uses-permission android:name="com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE" />
+    <uses-permission android:name="com.heytap.mcs.permission.RECIEVE_MCS_MESSAGE" />
+
+    <application>
+        <!--
+        如果应用需要解析和处理Push消息（如透传消息），则继承PushService来处理，并在此申明
+        如果不需要处理Push消息，则直接申明PsuhService即可
+        -->
+        <service
+            android:name=".service.PushMessageService"
+            android:permission="com.coloros.mcs.permission.SEND_MCS_MESSAGE">
+            <intent-filter>
+                <action android:name="com.coloros.mcs.action.RECEIVE_MCS_MESSAGE" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.AppPushMessageService"
+            android:permission="com.heytap.mcs.permission.SEND_PUSH_MESSAGE">
+            <intent-filter>
+                <action android:name="com.heytap.mcs.action.RECEIVE_MCS_MESSAGE" />
+                <action android:name="com.heytap.msp.push.RECEIVE_MCS_MESSAGE" />
+            </intent-filter>
+        </service>
+    </application>
 </manifest>
   
