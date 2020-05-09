@@ -5,11 +5,17 @@
 
     <application
         android:name=".MainApplication"
-        android:allowBackup="false"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
+        <meta-data android:name="oppo_app_id" android:value="lVaQXzGpWMhQjR8UrYhqJ6XX" />
+        <meta-data android:name="oppo_app_key" android:value="I2hnmc3rhAhQjR8UrYhqJ6XX" />
+        <meta-data android:name="oppo_app_secret" android:value="jH0NZyMSpB95sV14xIjhdhc1" />
+        <meta-data android:name="oppo_channel_id" android:value="1" />
+        <meta-data android:name="oppo_channel_name" android:value="测试通道" />
+        <meta-data android:name="oppo_channel_description" android:value="测试通道的描述" />
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
