@@ -1,10 +1,18 @@
 import { OppoPushModule } from './native-module';
+import { NativeEventEmitter } from 'react-native'
+import {OPPOPushEmitter} from './oppo-event';
 
 class Api {
     /**
      * 初始化 oppo push
      */
     init() {
+        const nativeEventEmitter = new NativeEventEmitter(OppoPushModule);
+        nativeEventEmitter.removeAllListeners('OPPO_Push_Response');
+        nativeEventEmitter.addListener('OPPO_Push_Response', (data) => {
+            OPPOPushEmitter.emit('OPPO_Push_Response', data);
+        });
+
         OppoPushModule.init();
     }
 
@@ -20,6 +28,13 @@ class Api {
      */
     unRegister() {
         OppoPushModule.unRegister();
+    }
+
+    /**
+     * 弹出通知栏权限弹窗（仅一次）
+     */
+    requestNotificationPermission() {
+        OppoPushModule.requestNotificationPermission();
     }
 
     /**
