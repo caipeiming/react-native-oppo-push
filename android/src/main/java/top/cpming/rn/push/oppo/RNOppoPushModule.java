@@ -25,6 +25,9 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.heytap.msp.push.HeytapPushManager;
 import com.heytap.msp.push.callback.ICallBackResultService;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -335,13 +338,22 @@ public class RNOppoPushModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void setPushTime(ReadableMap params, Promise promise) {
         try {
-            List<Integer> days = Arguments.toList(params.getArray("days"));
+            /**
+             * @// TODO: 2020-05-10
+             * 使用下面这一行，貌似有点问题
+             */
+//            List<Integer> days = Arguments.toList(params.getArray("days"));
+            String[] dayArr = params.getString("days").split(",");
+            List<Integer> days = new ArrayList<>();
+            for (int i = 0; i < dayArr.length; i++) {
+                days.add(Integer.valueOf(dayArr[i]));
+            }
+            Collections.sort(days);
             int startHour = params.getInt("startHour");
             int startMin = params.getInt("startMin");
             int endHour = params.getInt("endHour");
             int endMin = params.getInt("endMin");
             HeytapPushManager.setPushTime(days, startHour, startMin, endHour, endMin);
-            promise.resolve("设置成功");
         } catch (Exception e) {
             showResult("setPushTime", e.getMessage());
             promise.reject("1", e.getMessage());

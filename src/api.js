@@ -107,9 +107,11 @@ class Api {
     /**
      * 设置允许推送时间
      * @param {[type]} params: object [description]
+     * @return {[type]} Promise
      */
-    setPushTime(params) {
-        OppoPushModule.setPushTime(params);
+    setPushTime(params: object) {
+        params["days"] = params["days"].join(",");
+        return OppoPushModule.setPushTime(params);
     }
 }
 
