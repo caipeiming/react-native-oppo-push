@@ -69,7 +69,7 @@ export default class App extends Component {
                         }
                         break;
                     case OT_SET_PUSH_TIME:
-
+                        text = `【SetPushTime】code=${code},result:${data}`;
                         break;
                     case OT_ERROR:
                         text = message;

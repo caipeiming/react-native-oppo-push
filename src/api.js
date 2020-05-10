@@ -103,6 +103,14 @@ class Api {
     getSDKVersion() {
         return OppoPushModule.getSDKVersion();
     }
+
+    /**
+     * 设置允许推送时间
+     * @param {[type]} params: object [description]
+     */
+    setPushTime(params) {
+        OppoPushModule.setPushTime(params);
+    }
 }
 
 export const OppoPush = new Api();

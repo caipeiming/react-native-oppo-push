@@ -19,12 +19,14 @@ import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.heytap.msp.push.HeytapPushManager;
 import com.heytap.msp.push.callback.ICallBackResultService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nullable;
@@ -322,6 +324,28 @@ public class RNOppoPushModule extends ReactContextBaseJavaModule {
     public void getSDKVersion(Promise promise) {
         String version = HeytapPushManager.getSDKVersion();
         promise.resolve(version);
+    }
+
+    /**
+     * 设置允许推送时间 API
+     *
+     * @param params
+     * @param promise
+     */
+    @ReactMethod
+    public void setPushTime(ReadableMap params, Promise promise) {
+        try {
+            List<Integer> days = Arguments.toList(params.getArray("days"));
+            int startHour = params.getInt("startHour");
+            int startMin = params.getInt("startMin");
+            int endHour = params.getInt("endHour");
+            int endMin = params.getInt("endMin");
+            HeytapPushManager.setPushTime(days, startHour, startMin, endHour, endMin);
+            promise.resolve("设置成功");
+        } catch (Exception e) {
+            showResult("setPushTime", e.getMessage());
+            promise.reject("1", e.getMessage());
+        }
     }
 
     private void sendEvent(WritableMap response) {
