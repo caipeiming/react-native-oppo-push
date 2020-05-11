@@ -4,6 +4,8 @@
 [![npm version](https://img.shields.io/npm/v/react-native-oppo-push.svg)](https://www.npmjs.com/package/react-native-oppo-push)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
+react-native-oppo-push 使用 [OPPO PUSH 客户端SDK接口文档（2.1.0版本）](https://open.oppomobile.com/wiki/doc#id=10704)，适配最新 Android 10（Android Q）的 OPPO 手机厂商推送，系统级触达，无拦截，亿级推送能力。
+
 ## 安装
 
 ```
@@ -77,7 +79,7 @@ import { OppoPush,
 
 ### `init`
 
-初始化 OPPO PUSH 服务，创建默认通道。只需调用一次，而且应该首先调用，否则以下的接口将无法正常使用。
+初始化 OPPO PUSH 服务，创建默认通道。
 
 **定义**:
 
@@ -418,8 +420,8 @@ export default class App extends Component {
 }
 ```
 
-## 示例
+## Demo
 
-- 参考 [example](https://github.com/caipeiming/react-native-oppo-push/tree/master/example)
+- Demo 代码参考 [example](https://github.com/caipeiming/react-native-oppo-push/tree/master/example)
 
-- 安卓手机也可以直接安装已编译的 [apk](https://github.com/caipeiming/react-native-oppo-push/releases)
+- 安卓手机也可以直接下载并安装已编译的 [apk](https://github.com/caipeiming/react-native-oppo-push/releases)
