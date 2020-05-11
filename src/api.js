@@ -110,7 +110,7 @@ class Api {
      * @return {[type]} Promise
      */
     setPushTime(params: object) : Promise {
-        params["weekDays"] = params["days"].join(",");
+        params["weekDays"] = params["weekDays"].join(",");
         return OppoPushModule.setPushTime(params);
     }
 }
