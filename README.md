@@ -1,6 +1,9 @@
 
 # react-native-oppo-push
 
+[![npm version](https://img.shields.io/npm/v/react-native-oppo-push.svg)](https://www.npmjs.com/package/react-native-oppo-push)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+
 ## 安装
 
 ```
