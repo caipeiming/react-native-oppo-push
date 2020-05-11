@@ -323,7 +323,7 @@ OppoPush.setPushTime(params).catch(error => {
 });
 ```
 
-## constants 常量
+## `constants`
 
 该常量用于事件订阅返回的数据类型
 
