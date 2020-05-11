@@ -41,7 +41,7 @@ class Api {
      * 是否支持 OPPO PUSH
      * @return {[type]} Promise
      */
-    isSupportPush() {
+    isSupportPush() : Promise {
         return OppoPushModule.isSupportPush();
     }
 
@@ -84,7 +84,7 @@ class Api {
      * 获取OPPO PUSH推送服务MCS版本（例如"1701"）
      * @return {[type]} Promise
      */
-    getPushVersionCode() {
+    getPushVersionCode() : Promise {
         return OppoPushModule.getPushVersionCode();
     }
 
@@ -92,7 +92,7 @@ class Api {
      * 获取OPPO PUSH推送服务MCS名称（例如"1.7.1"）
      * @return {[type]} Promise
      */
-    getPushVersionName() {
+    getPushVersionName() : Promise{
         return OppoPushModule.getPushVersionName();
     }
 
@@ -100,7 +100,7 @@ class Api {
      * 获取OPPO PUSH推送服务SDK版本（例如"2.1.0"）
      * @return {[type]} Promise
      */
-    getSDKVersion() {
+    getSDKVersion() : Promise {
         return OppoPushModule.getSDKVersion();
     }
 
@@ -109,7 +109,7 @@ class Api {
      * @param {[type]} params: object [description]
      * @return {[type]} Promise
      */
-    setPushTime(params: object) {
+    setPushTime(params: object) : Promise {
         params["days"] = params["days"].join(",");
         return OppoPushModule.setPushTime(params);
     }
