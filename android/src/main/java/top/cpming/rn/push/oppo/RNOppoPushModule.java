@@ -202,12 +202,15 @@ public class RNOppoPushModule extends ReactContextBaseJavaModule {
 
             // 创建通道
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                if (bundle.get("oppo_channel_id") == null) {
-                    throw new Exception("请在 AndroidManifest.xml 文件中添加 <meta-data android:name=\"oppo_channel_id\" android:value=\"您的应用在 OPPO 推送平台配置的通道ID\"/>");
-                }
                 String channelId = String.valueOf(bundle.get("oppo_channel_id"));
                 String channelName = bundle.getString("oppo_channel_name", "");
                 String channelDescription = bundle.getString("oppo_channel_description", "");
+                if (bundle.get("oppo_channel_id") == null || channelId.trim().equals("")) {
+                    throw new Exception("请在 AndroidManifest.xml 文件中添加 <meta-data android:name=\"oppo_channel_id\" android:value=\"您的应用在 OPPO 推送平台配置的通道ID\"/>");
+                }
+                if (channelName == null || channelName.trim().equals("")) {
+                    throw new Exception("请在 AndroidManifest.xml 文件中添加 <meta-data android:name=\"oppo_channel_name\" android:value=\"您的应用在 OPPO 推送平台配置的通道名称\"/>");
+                }
                 long[] vibratePattern = new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400};
                 this.checkOrCreateChannel(channelId, channelName, channelDescription, null, NotificationCompat.PRIORITY_HIGH, vibratePattern);
             }
@@ -343,7 +346,7 @@ public class RNOppoPushModule extends ReactContextBaseJavaModule {
              * 使用下面这一行，貌似有点问题
              */
 //            List<Integer> days = Arguments.toList(params.getArray("days"));
-            String[] dayArr = params.getString("days").split(",");
+            String[] dayArr = params.getString("weekDays").split(",");
             List<Integer> days = new ArrayList<>();
             for (int i = 0; i < dayArr.length; i++) {
                 days.add(Integer.valueOf(dayArr[i]));

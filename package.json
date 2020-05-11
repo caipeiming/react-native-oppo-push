@@ -8,10 +8,21 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react-native"
+    "react-native-oppo-push",
+    "oppo 推送",
+    "react native oppo push",
+    "react native oppo",
+    "react native oppo 推送",
+    "oppo 推送",
+    "oppo push",
+    "oppo 厂商 push",
+    "oppo 厂商推送",
+    "rn oppo push",
+    "rn oppo"
   ],
-  "author": "",
-  "license": "",
+  "author": "caipeiming",
+  "homepage": "https://github.com/caipeiming/react-native-oppo-push.git",
+  "license": "MIT",
   "peerDependencies": {
     "react-native": "^0.41.2"
   },

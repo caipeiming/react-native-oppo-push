@@ -3,13 +3,21 @@
 
 ## 安装
 
-### React Native 0.60 或以上
+```
+$ yarn add react-native-oppo-push
+```
 
-`$ npm install react-native-oppo-push --save`
+### Link
 
-### React Native 0.59 或以下
+- **React Native 0.60+**
 
-`$ react-native link react-native-oppo-push`
+[CLI autolink feature](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md) 在构建应用时已自动链接此模块。 
+
+- **React Native <= 0.59**
+
+```bash
+$ react-native link react-native-oppo-push
+```
 
 ### Android 配置
 
@@ -29,6 +37,8 @@
     ...
 </application>
 ```
+
+Android 8.0（API ≥ 26），需要配置通道，[参考 OPPO 文档](https://open.oppomobile.com/wiki/doc#id=10289)
 
 ## 使用
 
@@ -62,7 +72,7 @@ import { OppoPush,
   - [constants](#constants)
   - [OPPOPushEmitter](#OPPOPushEmitter)
 
-## `init`
+### `init`
 
 初始化 OPPO PUSH 服务，创建默认通道。只需调用一次，而且应该首先调用，否则以下的接口将无法正常使用。
 
@@ -78,7 +88,7 @@ init(): void
 OppoPush.init();
 ```
 
-## `getRegister`
+### `getRegister`
 
 获取注册OPPO PUSH推送服务的注册ID
 
@@ -94,7 +104,7 @@ getRegister(): void
 OppoPush.getRegister();
 ```
 
-## `unRegister`
+### `unRegister`
 
 注销注册OPPO PUSH推送服务
 
@@ -110,7 +120,7 @@ unRegister(): void
 OppoPush.unRegister();
 ```
 
-## `requestNotificationPermission`
+### `requestNotificationPermission`
 
 弹出通知栏权限弹窗（仅一次）
 
@@ -126,9 +136,9 @@ requestNotificationPermission(): void
 OppoPush.requestNotificationPermission();
 ```
 
-## `isSupportPush`
+### `isSupportPush`
 
-判断是否手机平台是否支持 OPPO PUSH 服务
+判断手机平台是否支持 OPPO PUSH 服务
 
 **定义**:
 
@@ -148,7 +158,7 @@ OppoPush.isSupportPush().then(data => {
 });
 ```
 
-## `openNotificationSettings`
+### `openNotificationSettings`
 
 打开通知栏设置界面
 
@@ -164,7 +174,7 @@ openNotificationSettings(): void
 OppoPush.openNotificationSettings();
 ```
 
-## `getPushStatus`
+### `getPushStatus`
 
 获取 OPPO PUSH 推送服务状态
 
@@ -180,7 +190,7 @@ getPushStatus(): void
 OppoPush.getPushStatus();
 ```
 
-## `getNotificationStatus`
+### `getNotificationStatus`
 
 获取通知栏状态
 
@@ -196,7 +206,7 @@ getNotificationStatus(): void
 OppoPush.getNotificationStatus();
 ```
 
-## `pausePush`
+### `pausePush`
 
 暂停接收 OPPO PUSH 服务推送的消息
 
@@ -212,7 +222,7 @@ pausePush(): void
 OppoPush.pausePush();
 ```
 
-## `resumePush`
+### `resumePush`
 
 恢复接收OPPO PUSH服务推送的消息，这时服务器会把暂停时期的推送消息重新推送过来
 
@@ -228,7 +238,7 @@ resumePush(): void
 OppoPush.resumePush();
 ```
 
-## `getPushVersionCode`
+### `getPushVersionCode`
 
 获取OPPO PUSH推送服务MCS版本（例如"1701"）
 
@@ -240,7 +250,7 @@ getPushVersionCode(): Promise
 
 **Returns**:
 
-包含的 OPPO PUSH 的MCS版本的 `Promise` 对象。
+包含的 OPPO PUSH 的MCS版本的 `Promise` 对象，例如 `1701`
 
 **Example**:
 
@@ -250,7 +260,7 @@ OppoPush.getPushVersionCode().then(code => {
 });
 ```
 
-## `getPushVersionName`
+### `getPushVersionName`
 
 获取 OPPO PUSH 推送服务MCS名称（例如"1.7.1"）
 
@@ -262,7 +272,7 @@ getPushVersionName(): Promise
 
 **Returns**:
 
-包含的 OPPO PUSH 的MCS名称的 `Promise` 对象。
+包含的 OPPO PUSH 的MCS名称的 `Promise` 对象，例如 `"1.7.1"`
 
 **Example**:
 
@@ -272,7 +282,7 @@ OppoPush.getPushVersionName().then(name => {
 });
 ```
 
-## `getSDKVersion`
+### `getSDKVersion`
 
 获取 OPPO PUSH 推送服务SDK版本（例如"2.1.0"）
 
@@ -284,7 +294,7 @@ getSDKVersion(): Promise
 
 **Returns**:
 
-包含的 OPPO PUSH 的 SDK 版本的 `Promise` 对象。
+包含的 OPPO PUSH 的 SDK 版本的 `Promise` 对象，例如 `"2.1.0"`
 
 **Example**:
 
@@ -294,7 +304,7 @@ OppoPush.getSDKVersion().then(sdk => {
 });
 ```
 
-## `setPushTime`
+### `setPushTime`
 
 设置允许推送时间
 
@@ -312,18 +322,18 @@ setPushTime(params: object): void
 
 ```js
 let params = {
-    days: [0, 1, 5],    // 周日为0，周一为1,以此类推
-    startHour: 0,       // 开始小时，24小时制
-    startMin: 0,        // 开始分钟
-    endHour: 23,        // 结束小时，24小时制
-    endMin: 59          // 结束分钟
+    weekDays: [0, 1, 5],    // 周日为0，周一为1,以此类推
+    startHour: 0,           // 开始小时，24小时制
+    startMin: 0,            // 开始分钟
+    endHour: 23,            // 结束小时，24小时制
+    endMin: 59              // 结束分钟
 };
 OppoPush.setPushTime(params).catch(error => {
     console.log(error);
 });
 ```
 
-## `constants`
+### `constants`
 
 该常量用于事件订阅返回的数据类型
 
@@ -337,3 +347,76 @@ OT_GET_NOTIFICATION_STATUS      // 通知状态
 OT_SET_PUSH_TIME                // 设置推送时间
 OT_ERROR                        // 错误
 ```
+
+### `OPPOPushEmitter`
+
+用于事件订阅
+
+**Example**:
+
+```js
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.onOPPOPushListener = this._onOPPOPushListener.bind(this);
+    }
+    
+    componentDidMount() {
+        OPPOPushEmitter.on("OPPO_Push_Response", this.onOPPOPushListener);
+    }
+
+    componentWillUnmount() {
+        OPPOPushEmitter.removeListener('OPPO_Push_Response', this.onOPPOPushListener);
+    }
+    
+    _onOPPOPushListener(data) {
+        let text = "";
+        if (data != null) {
+            let {code, data, status, message, type} = data;
+            switch(type) {
+                case OT_REGISTER:
+                    if (code == 0) {
+                        text = "【注册成功】registerId：" + data;
+                    } else {
+                        text = "【注册失败】code=" + code;
+                    }
+                    break;
+                case OT_UN_REGISTER:
+                    if (code == 0) {
+                        text = "【注销成功】code=" + code;
+                    } else {
+                        text = "【注销失败】code=" + code;
+                    }
+                    break;
+                case OT_GET_PUSH_STATUS:
+                    if (code == 0 && status == 0) {
+                        text = `【Push状态正常】code=${code},status=${status}`;
+                    } else {
+                        text = `【Push状态错误】code=${code},status=${status}`;
+                    }
+                    break;
+                case OT_GET_NOTIFICATION_STATUS:
+                    if (code == 0 && status == 0) {
+                        text = `【通知状态正常】code=${code},status=${status}`;
+                    } else {
+                        text = `【通知状态错误】code=${code},status=${status}`;
+                    }
+                    break;
+                case OT_SET_PUSH_TIME:
+                    text = `【SetPushTime】code=${code},result:${data}`;
+                    break;
+                case OT_ERROR:
+                    text = message;
+                    break;
+            }
+        }
+        console.log(text);
+    }
+}
+```
+
+## 示例
+
+- 参考 [example](https://github.com/caipeiming/react-native-oppo-push/tree/master/example)
+
+- 安卓手机也可以直接安装已编译的 [apk](https://github.com/caipeiming/react-native-oppo-push/releases)

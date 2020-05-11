@@ -131,7 +131,7 @@ export default class PushConfig extends Component {
         }
         this.showLog("【点击Button】设置推送时间");
         let params = {
-            days,
+            weekDays: days,
             startHour,
             startMin,
             endHour,
