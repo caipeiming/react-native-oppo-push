@@ -1,7 +1,7 @@
 
 {
   "name": "react-native-oppo-push",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -23,9 +23,6 @@
   "author": "caipeiming",
   "homepage": "https://github.com/caipeiming/react-native-oppo-push.git",
   "license": "MIT",
-  "peerDependencies": {
-    "react-native": "^0.41.2"
-  },
   "dependencies": {
     "events": "^3.1.0"
   }
